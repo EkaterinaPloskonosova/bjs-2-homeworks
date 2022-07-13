@@ -32,10 +32,11 @@ function worker(arr) {
 
 function makeWork(arrOfArr, func) {
   let max = func(arrOfArr[0]);
-  for (let i = 0; i < arrOfArr.length; i++) {
-    if (func(arrOfArr[i]) > max) {
-      max = func(arrOfArr[i]);
-    };
+    for (let i = 0; i < arrOfArr.length; i++) {
+      const funcResult = func(arrOfArr[i]);
+      if (funcResult > max) {
+        max = funcResult;
+      };
   };
   return max;
 }
@@ -44,7 +45,6 @@ function makeWork(arrOfArr, func) {
 function worker2(arr) {
   min = arr[0];
   max = arr[0];
-  res = 0;
 
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] > max) {
@@ -52,7 +52,6 @@ function worker2(arr) {
     } else if (arr[i] < min) {
       min = arr[i];
     };
-  res = Math.abs(max - min);
   };
-return res;
+return Math.abs(max - min);
 }

@@ -4,8 +4,8 @@ function cachingDecoratorNew(func) {
     const hash = args.join(",");
     let objectInCache = cache.findIndex(item => item.hash === hash); // ищем элемент, хэш которого равен нашему хэшу
     if (objectInCache !== -1) { // если элемент не найден
-        console.log("Из кэша: " + cache[objectInCache].result); // индекс нам известен, по индексу в массиве лежит объект, как получить нужное значение?
-        return "Из кэша: " + cache[objectInCache].result;
+      console.log("Из кэша: " + cache[objectInCache].result); // индекс нам известен, по индексу в массиве лежит объект, как получить нужное значение?
+      return "Из кэша: " + cache[objectInCache].result;
     }
 
     let result = func(...args); // в кэше результата нет - придётся считать
@@ -15,8 +15,8 @@ function cachingDecoratorNew(func) {
     }
     console.log("Вычисляем: " + result);
     return "Вычисляем: " + result;  
-}
-return wrapper;
+  }
+  return wrapper;
 }
    
 
@@ -31,23 +31,21 @@ function debounceDecoratorNew(func, delay) {
     clearTimeout(timeoutID);
     timeoutID = setTimeout(() => func(...args), delay);
   }
-    return wrapper;
-	}
+  return wrapper;
+}
 
 
 function debounceDecorator2(func, delay) {
   let timeoutID = null;
   
-  function wrapper (...args) {
-      
+  function wrapper (...args) {  
     if (timeoutID === null) {
       func(...args);
-      clearTimeout(timeoutID);
-      timeoutID = setTimeout(() => func(...args), delay);
     }
+    clearTimeout(timeoutID);
+    timeoutID = setTimeout(() => func(...args), delay);
     wrapper.count += 1;
   }
   wrapper.count = 0;
-
   return wrapper;
-} 
+}

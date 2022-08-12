@@ -9,15 +9,10 @@ class AlarmClock{
             throw new Error("error text");
         }
 
-        try {
-            if (this.alarmCollection.find(item => item.id === id) !==undefined) {
+        if (this.alarmCollection.find(item => item.id === id) !==undefined) {
             console.error("Этот будильник уже существует");
         } else {
             return this.alarmCollection.push({id, time, callback});
-            }
-        }
-        catch(error) {
-            return error;
         }
     }
 
